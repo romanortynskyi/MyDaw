@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyDaw.Pages.AddProjectPage"
+             xmlns:behaviors="clr-namespace:MyDaw.Behaviors"
+             xmlns:converters="clr-namespace:MyDaw.Converters"
+             xmlns:viewModels="clr-namespace:MyDaw.ViewModels"
+             Title="New Project File">
+
+    <HorizontalStackLayout>
+        <VerticalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="Name" />
+                <Entry WidthRequest="200" Text="{Binding Project.Name, Mode=TwoWay}" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Label Text="Location" />
+                <Entry WidthRequest="200" Text="{Binding Project.Location, Mode=TwoWay}" />
+                <Button Text="..." />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Label Text="Audio Path" />
+                <Entry WidthRequest="200" Text="{Binding Project.AudioPath, Mode=TwoWay}" />
+                <Button Text="..." />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Label Text="Tempo" />
+                <Entry WidthRequest="100" Text="{Binding Project.DefaultTempo, Mode=TwoWay}" />
+
+                <Label Text="Meter" />
+                <Entry Text="{Binding Project.DefaultMeterUpper, Mode=TwoWay}"/>
+                <Label Text="/" />
+                <Entry Text="{Binding Project.DefaultMeterUpper, Mode=TwoWay}"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Label Text="Bit Depth" />
+                <Picker
+                    x:Name="BitDepthPicker"
+                    SelectedItem="{Binding Project.BitDepth, Mode=TwoWay}"
+                >
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>16</x:String>
+                            <x:String>24</x:String>
+                            <x:String>32</x:String>
+                            <x:String>64</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Label Text="Sample Rate" />
+                <Picker
+                    x:Name="SampleRatePicker"
+                    SelectedItem="{Binding Project.SampleRate, Mode=TwoWay}"
+                >
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>44100</x:String>
+                            <x:String>48000</x:String>
+                            <x:String>88200</x:String>
+                            <x:String>96000</x:String>
+                            <x:String>176400</x:String>
+                            <x:String>192000</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout>
+            <Button Text="OK" Command="{Binding AddProjectCommand}"/>
+            <Button Text="Cancel" />
+        </VerticalStackLayout>
+    </HorizontalStackLayout>
+</ContentPage>

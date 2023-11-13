@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MyDaw.Pages.MainPage"
+    xmlns:viewModels="clr-namespace:MyDaw.ViewModels"
+    Shell.NavBarIsVisible="False"
+>
+
+    <StackLayout
+        VerticalOptions="StartAndExpand"
+        Padding="10,20,10,10"
+    >
+        <VerticalStackLayout>
+            <FlexLayout
+                Direction="Row"
+                JustifyContent="SpaceBetween"
+            >
+
+                <Label
+                    Text="Let's Get Started"
+                    FontSize="18"
+                />
+                <Label Text="Welcome" />
+
+            </FlexLayout>
+
+            <HorizontalStackLayout>
+                <VerticalStackLayout>
+                    <Button
+                        Text="New Project"
+                        Command="{Binding GoToAddProjectPageCommand}"
+                    />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+            
+            
+            
+        </VerticalStackLayout>
+    </StackLayout>
+
+</ContentPage>
