@@ -18,7 +18,7 @@ public class ProjectService : IProjectService
         return "D:/MyDaw Projects";
     }
 
-    private string GetProjectPath(Project project)
+    private string GetProjectPath(ProjectModel project)
     {
         string projectsPath = GetProjectsPath();
         string projectPath = Path.Combine(projectsPath, project.Name);
@@ -26,15 +26,15 @@ public class ProjectService : IProjectService
         return projectPath;
     }
 
-    public Project AddProject(Project project)
+    public ProjectModel AddProject(ProjectModel project)
     {
         string projectPath = GetProjectPath(project);
 
         _directoryService.EnsureDirectoryExists(projectPath);
 
-        string filePath = Path.Combine(projectPath, project.Name);
+        string filePath = Path.Combine(projectPath, $"{project.Name}.json");
 
-        Project newProject = new(project)
+        ProjectModel newProject = new(project)
         {
             Id = Guid.NewGuid(),
             CreatedAt = DateTime.Now,

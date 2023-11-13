@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MyDaw.Pages.AddProjectPage"
-             xmlns:behaviors="clr-namespace:MyDaw.Behaviors"
-             xmlns:converters="clr-namespace:MyDaw.Converters"
-             xmlns:viewModels="clr-namespace:MyDaw.ViewModels"
-             Title="New Project File">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:MyDaw.Converters"
+    xmlns:viewModels="clr-namespace:MyDaw.ViewModels"
+    x:Class="MyDaw.Pages.AddProjectPage"
+    Title="New Project File"
+>
+
+    <ContentPage.Resources>
+        <converters:PathConcatenationConverter x:Key="PathConcatenationConverter" />
+    </ContentPage.Resources>
 
     <HorizontalStackLayout>
         <VerticalStackLayout>
@@ -16,14 +21,18 @@
 
             <HorizontalStackLayout>
                 <Label Text="Location" />
-                <Entry WidthRequest="200" Text="{Binding Project.Location, Mode=TwoWay}" />
-                <Button Text="..." />
-            </HorizontalStackLayout>
-
-            <HorizontalStackLayout>
-                <Label Text="Audio Path" />
-                <Entry WidthRequest="200" Text="{Binding Project.AudioPath, Mode=TwoWay}" />
-                <Button Text="..." />
+                <Label>
+                    <Label.Text>
+                        <MultiBinding
+                            Converter="{StaticResource PathConcatenationConverter}"
+                            StringFormat="{}{0}\{1}"
+                        >
+                            <Binding Path="Project.Location" />
+                            <Binding Path="Project.Name" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+                <Button Text="Select" Command="{Binding SelectLocationCommand} "/>
             </HorizontalStackLayout>
 
             <HorizontalStackLayout>
@@ -73,7 +82,7 @@
 
         <VerticalStackLayout>
             <Button Text="OK" Command="{Binding AddProjectCommand}"/>
-            <Button Text="Cancel" />
+            <Button Text="Cancel" Command="{Binding GoBackCommand}" />
         </VerticalStackLayout>
     </HorizontalStackLayout>
 </ContentPage>

@@ -13,4 +13,10 @@ public class NavigationService : INavigationService
 
         return Shell.Current.GoToAsync(url, parameters);
     }
+
+    public Task GoBackAsync()
+    {
+        return Shell.Current.Navigation.PopAsync();
+    }
+
 }

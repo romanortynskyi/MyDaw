@@ -4,5 +4,5 @@ namespace MyDaw.Services.Interfaces;
 
 public interface IProjectService
 {
-    public Project AddProject(Project project);
+    public ProjectModel AddProject(ProjectModel project);
 }
